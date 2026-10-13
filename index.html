@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive model of waiting for a reply.">
+  <title>Still Waiting?</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="script.js?v=4" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="intro">
+      <p class="eyebrow">ACTIVITY 2 · REPRESENT A PHENOMENON</p>
+      <h1>Still waiting?</h1>
+      <p class="lede">Explore how time, message signals, response effort, and an urgent deadline can shape the choices available while waiting for one reply.</p>
+    </header>
+
+    <section class="setup card" id="setup-panel" aria-labelledby="setup-heading">
+      <div>
+        <p class="step-label">01 · SET THE SITUATION</p>
+        <h2 id="setup-heading">What do you expect?</h2>
+      </div>
+
+      <label>
+        Expected reply time
+        <span class="input-row">
+          <input id="expected-time" type="number" min="1" max="60" value="10">
+          <select id="time-unit" aria-label="Expected reply time unit">
+            <option value="seconds">seconds</option>
+            <option value="minutes">minutes</option>
+          </select>
+        </span>
+      </label>
+
+      <fieldset>
+        <legend>Expected response effort</legend>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="effort" value="low" checked><span><strong>Low</strong><small>A brief reply</small></span></label>
+          <label class="choice"><input type="radio" name="effort" value="medium"><span><strong>Medium</strong><small>Some thought</small></span></label>
+          <label class="choice"><input type="radio" name="effort" value="high"><span><strong>High</strong><small>Privacy or sustained attention</small></span></label>
+        </div>
+      </fieldset>
+
+      <label class="deadline-choice">
+        <input id="urgent-deadline" type="checkbox">
+        <span><strong>There is an urgent decision deadline</strong><small>I may need to act before a reply arrives.</small></span>
+      </label>
+
+      <button class="primary-button" id="start-button">Send message and start waiting</button>
+    </section>
+
+    <section class="simulation hidden" id="simulation" aria-labelledby="simulation-heading">
+      <div class="experience-column">
+        <div class="phone card" id="experience-window">
+        <div class="phone-header">
+          <div class="avatar" aria-hidden="true">A</div>
+          <div><h2 id="simulation-heading">Alex</h2><p id="view-label">Conversation</p></div>
+          <span class="elapsed"><strong id="elapsed-time">0:00</strong><small>elapsed</small></span>
+        </div>
+
+        <div class="conversation" id="conversation-view" aria-live="polite">
+          <div class="message-group outgoing" id="message-thread">
+            <div class="message sent-message">Are you free to talk?</div>
+            <div class="message-signal" id="message-signal">Sent</div>
+            <div class="signal" id="typing-signal" hidden><span></span><span></span><span></span><em>typing</em></div>
+          </div>
+          <div class="message received-message hidden" id="reply-message">Yes — I can talk now.</div>
+        </div>
+
+        <div class="social-feed hidden" id="social-feed" aria-label="A generic social media feed">
+          <div class="feed-top"><strong>DAYLIGHT</strong><span>For you</span></div>
+          <article class="feed-card"><div class="feed-image hills"><span>Slow morning walk</span></div><p><strong>studio.notes</strong> A quiet path before the city wakes.</p></article>
+          <article class="feed-card"><div class="feed-image shapes"><span>Small things, noticed</span></div><p><strong>everyday.frames</strong> Colors from an ordinary afternoon.</p></article>
+        </div>
+
+          <div class="phone-footer">
+            <button id="switch-view-button">Switch to do other things</button>
+            <span class="check-display">Checks <strong id="check-count">0</strong></span>
+          </div>
+        </div>
+
+        <section class="card decision-panel" id="decision-panel" aria-label="Decision space">
+          <p class="step-label">DECISION SPACE</p>
+          <p id="decision-reason">You can choose an action at any time while you wait.</p>
+          <div class="action-options" id="action-options"></div>
+          <p class="microcopy">The model presents possibilities. You make the final decision.</p>
+        </section>
+      </div>
+
+      <aside class="card model-notes">
+        <p class="step-label">02 · OBSERVE WHAT CHANGES</p>
+        <h2>The model is now running</h2>
+        <p>Status signals will change automatically. You can stay in the conversation or switch to another activity.</p>
+        <dl>
+          <div><dt>Expected reply</dt><dd id="expected-display">—</dd></div>
+          <div><dt>Response effort</dt><dd id="effort-display">—</dd></div>
+          <div><dt>Waiting threshold</dt><dd id="threshold-display">—</dd></div>
+        </dl>
+        <p class="microcopy">Status changes are evidence. The model does not know why the recipient acts.</p>
+      </aside>
+    </section>
+
+    <section class="card summary hidden" id="summary" aria-labelledby="summary-heading">
+      <p class="step-label">03 · REVIEW THE EXPERIENCE</p>
+      <h2 id="summary-heading">Waiting summary</h2>
+      <dl id="summary-list"></dl>
+      <button class="primary-button" id="reset-button">Start a new situation</button>
+    </section>
+  </main>
+</body>
+</html>
