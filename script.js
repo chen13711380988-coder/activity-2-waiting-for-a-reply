@@ -25,6 +25,8 @@ const thresholdDisplay = document.querySelector('#threshold-display');
 const decisionPanel = document.querySelector('#decision-panel');
 const decisionReason = document.querySelector('#decision-reason');
 const actionOptions = document.querySelector('#action-options');
+const interpretationPanel = document.querySelector('#interpretation-panel');
+const interpretationOptions = document.querySelector('#interpretation-options');
 const summaryList = document.querySelector('#summary-list');
 
 // 2. Store all information that changes during one waiting experience.
@@ -53,6 +55,7 @@ function freshState() {
     pendingPrompt: null,
     decisionActive: false,
     finalAction: 'Still waiting',
+    interpretation: 'Not selected yet',
     sequenceName: ''
   };
 }
@@ -274,6 +277,32 @@ function showActions(actions, disabled = false) {
   });
 }
 
+function showInterpretationOptions() {
+  const interpretations = [
+    "The recipient may not want to reply to me.",
+    'The recipient may be dealing with an emergency.',
+    'The recipient may see this as a serious conversation and need time to think about a reply.',
+    "I'm not sure why the reply was delayed."
+  ];
+
+  interpretationOptions.replaceChildren();
+  interpretations.forEach(interpretation => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'interpretation-button';
+    button.textContent = interpretation;
+    button.addEventListener('click', () => {
+      state.interpretation = interpretation;
+      interpretationOptions.querySelectorAll('button').forEach(option => option.classList.remove('selected'));
+      button.classList.add('selected');
+      const summaryValue = summaryList.querySelector('[data-summary-key="Sender interpretation"] dd');
+      if (summaryValue) summaryValue.textContent = interpretation;
+    });
+    interpretationOptions.append(button);
+  });
+  interpretationPanel.classList.remove('hidden');
+}
+
 function chooseAction(action) {
   state.finalAction = action;
   state.decisionActive = false;
@@ -391,7 +420,8 @@ function endExperience(finalAction) {
     ['Status sequence', state.sequenceName],
     ['Follow-up sent', state.followUpSent ? 'Yes' : 'No'],
     ['Reply arrived', state.replyArrived ? 'Yes' : 'No'],
-    ['Final action', state.finalAction]
+    ['Final action', state.finalAction],
+    ['Sender interpretation', state.interpretation]
   ];
 
   summaryList.replaceChildren();
@@ -401,11 +431,13 @@ function endExperience(finalAction) {
     const dd = document.createElement('dd');
     dt.textContent = term;
     dd.textContent = value;
+    group.dataset.summaryKey = term;
     group.append(dt, dd);
     summaryList.append(group);
   });
 
   summary.classList.remove('hidden');
+  showInterpretationOptions();
   summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 

@@ -20,6 +20,7 @@ Open `index.html` in a browser. No installation or internet connection is requir
 6. Switch to a generic social feed, then return to check the conversation.
 7. Use the always-visible action buttons in the decision section below the chat whenever you want to make a choice.
 8. Review the summary while the completed conversation remains visible.
+9. After the waiting period ends, select an interpretation of the delay. The model records it without treating it as a verified fact about the recipient.
 
 ## Model rules
 
@@ -34,6 +35,7 @@ Open `index.html` in a browser. No installation or internet connection is requir
 - Returning to the conversation counts as one check.
 - The decision section and its action buttons remain below the chat throughout the experience. At meaningful moments, its explanation changes to describe what happened.
 - The conversation remains visible when the final waiting summary appears.
+- An interpretation section appears after a reply arrives or the sender stops waiting. Its choices represent the sender's possible explanations, not the recipient's known thoughts.
 - The final summary identifies which predefined sequence was selected.
 - The user makes the final decision.
 

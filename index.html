@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="An interactive model of waiting for a reply.">
   <title>Still Waiting?</title>
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="script.js?v=4" defer></script>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="script.js?v=5" defer></script>
 </head>
 <body>
   <main class="page-shell">
@@ -85,6 +85,14 @@
           <p id="decision-reason">You can choose an action at any time while you wait.</p>
           <div class="action-options" id="action-options"></div>
           <p class="microcopy">The model presents possibilities. You make the final decision.</p>
+        </section>
+
+        <section class="card interpretation-panel hidden" id="interpretation-panel" aria-labelledby="interpretation-heading">
+          <p class="step-label">INTERPRETATION</p>
+          <h2 id="interpretation-heading">How do you think about your wait?</h2>
+          <p>Choose the interpretation that is closest to what you are thinking.</p>
+          <div class="interpretation-options" id="interpretation-options"></div>
+          <p class="microcopy">These are possible interpretations, not facts about the recipient.</p>
         </section>
       </div>
 
