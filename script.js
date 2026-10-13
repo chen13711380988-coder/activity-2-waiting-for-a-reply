@@ -282,7 +282,8 @@ function showInterpretationOptions() {
     "The recipient may not want to reply to me.",
     'The recipient may be dealing with an emergency.',
     'The recipient may see this as a serious conversation and need time to think about a reply.',
-    "I'm not sure why the reply was delayed."
+    "I'm not sure why the reply was delayed.",
+    "The wait is short. This is just a normal waiting period for a reply."
   ];
 
   interpretationOptions.replaceChildren();
