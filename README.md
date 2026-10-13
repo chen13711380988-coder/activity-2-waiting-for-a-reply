@@ -45,7 +45,7 @@ Open `index.html` in a browser. No installation or internet connection is requir
 
 ## AI use
 
-AI helped organize the phenomenon into observable states, identify unclear instructions, review assumptions, and translate the revised pseudocode into a browser-based model. Important decisions—including the unit of analysis, included variables, threshold multipliers, and final actions—were made through the student's responses.
+AI helped identify unclear instructions, review assumptions, and translate the revised pseudocode into a browser-based model. Important decisions—including the unit of analysis, included variables, threshold multipliers, and final actions—were made through the student's responses.
 
 ## Reflection
 
